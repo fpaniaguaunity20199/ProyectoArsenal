@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Flecha : MonoBehaviour
 {
+    public GameObject container;
     Vector3 prevPos;
     Vector3 currentPos;
     Vector3 difPos;
@@ -14,7 +15,9 @@ public class Flecha : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<BoxCollider>().enabled = false;
-        transform.SetParent(other.transform);
+        GameObject go = Instantiate(container);//Instanciación del contenedor (un objeto vacío escala 1,1,1) 
+        transform.SetParent(go.transform);//Hacemos hija del contenedor a la flecha para que no escale la flecha
+        go.transform.SetParent(other.transform);//Hacemos hijo al contenedor del transform del collider
         Destroy(this);//Destruimos el SCRIPT para que no continúe con la rotación.
     }
 
