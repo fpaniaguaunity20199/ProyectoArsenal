@@ -11,6 +11,7 @@ public class Rotador : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-        transform.Rotate(y*-1, x, 0);
+        transform.Rotate(y * -1, 0, 0);
+        transform.Rotate(0, x, 0, Space.World);
     }
 }
